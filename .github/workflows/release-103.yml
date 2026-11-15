@@ -1,0 +1,80 @@
+name: Build and publish Just Translate 1.0.3
+on:
+  push:
+    branches: [main]
+    paths: ['release/1.0.3-overlay.json.gz.b64', '.github/workflows/release-103.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: release-1.0.3
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Restore verified corresponding source snapshot
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir previous source
+          gh release download v1.0.0 --repo "$GITHUB_REPOSITORY" --pattern 'Just-Translate-source-1.0.0.zip' --dir previous
+          python3 - <<'PY'
+          import base64,gzip,hashlib,json,pathlib,zipfile
+          overlay=json.loads(gzip.decompress(base64.b64decode(pathlib.Path('release/1.0.3-overlay.json.gz.b64').read_text())))
+          root=pathlib.Path('source')
+          with zipfile.ZipFile('previous/Just-Translate-source-1.0.0.zip') as z:
+              for name in z.namelist():
+                  if name.endswith('/'):continue
+                  path=root/name.split('/',1)[1];path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(z.read(name))
+          for name,content in overlay['files'].items():
+              path=root/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_bytes(base64.b64decode(content))
+          for name in overlay['removed']:(root/name).unlink(missing_ok=True)
+          for name,digest in overlay['sha256'].items():
+              assert hashlib.sha256((root/name).read_bytes()).hexdigest()==digest,name
+          print('Verified',len(overlay['sha256']),'source files')
+          PY
+      - name: Build plugin and corresponding source
+        working-directory: source
+        run: |
+          npm ci --ignore-scripts
+          npm run build
+          python3 packaging/make-source-archive.py
+          mkdir -p dist
+          cp build/Just-Translate-source.zip dist/Just-Translate-source-1.0.3.zip
+      - name: Refresh complete installers with verified native runtimes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: source
+        run: |
+          gh release download v1.0.0 --repo "$GITHUB_REPOSITORY" --pattern 'Just-Translate-Installer-macOS-arm64-1.0.0.zip' --pattern 'Just-Translate-Windows-x64-1.0.0.zip' --dir dist
+          python3 packaging/repack-release.py --from-version 1.0.0
+      - name: Publish complete release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        working-directory: source
+        run: |
+          cat > /tmp/release-notes.md <<'NOTES'
+          ## 更简单的 ChatGPT 连接与参考文献保留
+          - 设置中自动检测本机 Codex 的 ChatGPT 登录状态，准备连接组件并一键使用；手动参数保留在折叠区域。
+          - 高级中新增“保留参考文献原文”，默认关闭。按独立 References、Bibliography、参考文献等标题识别，支持常见双栏及跨页；复杂布局可能漏识别。划词翻译保持可用。
+          - 修复只更新插件时与旧助手的设置兼容：旧助手仍可保存原有设置，新开关提示升级后使用。
+          - 继续保留多篇排队、单项取消、划词优先、注释去重、中文/双语附件自动归档。
+          - 完善 GitHub 功能介绍、安装步骤、平台支持与常见问题。
+
+          ## 安装
+          首次安装或升级助手，请下载对应平台完整 ZIP，运行安装器，再安装包内 XPI 并重启 Zotero。已有模型、论文和注释保留。只更新 XPI 不会升级助手；本版新功能需 1.0.3 助手。
+
+          ## 验证与平台
+          本地后台 132 项通过、2 项平台检查跳过；Zotero 10.0.9 的 39 项设置/显示检查与 6 项 ChatGPT 连接界面检查通过。界面检查使用模拟服务响应；参考文献已用合成 PDF 验证提取及翻译桥接，复杂论文版式效果待进一步评估。Windows 包复用原有 x64 运行环境，未重新完成 Windows 桌面验收；Mac 尚未 Apple 开发者签名、公证。
+
+          ## 源码与许可
+          对应构建源码随本版提供，插件与助手按 AGPL-3.0-or-later 分发，第三方声明与许可证随包保留。安装包不含模型权重，下载前需确认相应模型许可。Agent 模式按相应服务账号的可用权限和额度使用。
+          NOTES
+          gh release create v1.0.3 --repo "$GITHUB_REPOSITORY" --title 'Just Translate 1.0.3' --draft --notes-file /tmp/release-notes.md
+          gh release upload v1.0.3 --repo "$GITHUB_REPOSITORY" build/Just-Translate-1.0.3.xpi build/updates.json dist/Just-Translate-source-1.0.3.zip dist/Just-Translate-Installer-macOS-arm64-1.0.3.zip dist/Just-Translate-Windows-x64-1.0.3.zip
+          gh release edit v1.0.3 --repo "$GITHUB_REPOSITORY" --draft=false --latest
