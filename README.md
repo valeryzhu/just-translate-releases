@@ -6,9 +6,15 @@
 
 在 Zotero 中划词即译，保存译文注释，翻译整篇论文。
 
-[下载最新正式版](https://github.com/valeryzhu/just-translate-releases/releases/latest) · [功能与使用指南](#功能) · [常见问题](#常见问题) · [反馈问题](https://github.com/valeryzhu/just-translate-releases/issues)
+**首次安装 · 1.0.3 完整包**　[Mac · Apple 芯片](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.3/Just-Translate-Installer-macOS-arm64-1.0.3.zip)　[Windows · Intel / AMD 64 位](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.3/Just-Translate-Windows-x64-1.0.3.zip)
+
+[查看最新版本与升级说明](https://github.com/valeryzhu/just-translate-releases/releases/latest) · [功能与使用指南](#功能) · [常见问题](#常见问题) · [反馈问题](https://github.com/valeryzhu/just-translate-releases/issues)
 
 </div>
+
+![内置示例论文生成的双语对照 PDF](docs/images/bilingual-example.png)
+
+内置练习论文的实际输出（本地 1.0.5 验证版，HY-MT 1.8B）。左侧为原文，右侧为译文。
 
 ## 功能
 
@@ -26,7 +32,10 @@
 
 ## 三步开始
 
-1. **下载完整安装包。** 在 [最新 Release](https://github.com/valeryzhu/just-translate-releases/releases/latest) 选择系统对应 ZIP，解压并运行安装器。再在 Zotero「工具 → 插件 → 齿轮 → 从文件安装插件」中选择包内 XPI，重启 Zotero。
+1. **安装与你电脑匹配的完整包。** 从本页顶部下载 ZIP，解压后按系统操作：
+   - **Mac（Apple 芯片）** 打开「Just Translate 安装器」。当前安装器尚未完成 Apple 签名公证，macOS 可能阻止打开。安装完成后，Finder 会选中插件文件。
+   - **Windows（Intel / AMD 64 位）** 双击解压目录里的 `JustTranslateSetup.exe`。助手安装完成后，资源管理器会选中插件文件。新版桌面流程待 Windows 实机复验。
+   - **回到 Zotero**，进入「工具 → 插件 → 齿轮 → 从文件安装插件」，选择刚才选中的 `.xpi`，按提示重启。
 2. **准备翻译方式。** 打开「工具 → Just Translate」，按电脑配置使用推荐模型，确认许可并下载。已有模型可直接启用，下载显示实际进度并支持续传。
 3. **开始阅读。** 打开内置示例 PDF 或自己的论文，选中文字查看译文；点击「加入注释」保存。全文翻译从工具菜单或 PDF 文件右键进入，完成后在原论文下查看中文与双语附件。
 
