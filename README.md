@@ -14,6 +14,14 @@
 
 </div>
 
+### 从划词到注释
+
+在示例 PDF 中选中一句英文，译文出现后点「加入注释」，就能在 Zotero 里和原文一起查看。
+
+![Zotero 阅读器中的简译译文和加入注释按钮](docs/images/selection-translation.jpg)
+
+### 双语 PDF
+
 ![内置示例论文生成的双语对照 PDF](docs/images/bilingual-example.png)
 
 内置练习论文的实际输出（本地 1.0.5 验证版，HY-MT 1.8B）。左侧为原文，右侧为译文。
