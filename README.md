@@ -94,7 +94,8 @@ Agent 连接使用对应账号实际可用的权限与额度。ChatGPT / Codex �
 
 在 [公开仓库 Issues](https://github.com/valeryzhu/just-translate-releases/issues) 说明系统、Zotero 版本、插件与助手版本、复现步骤和错误提示。插件「设置 → 交流与反馈」提供 QQ 群与「小竹读研在养鱼」公众号二维码。
 
-## 来源与许可
+## 站在巨人的肩膀上
+本项目参考了以下的项目
 
 - [Translate for Zotero](https://github.com/windingwind/zotero-pdf-translate)：划词和阅读器交互基础，AGPL-3.0-or-later。
 - [PDFMathTranslate-next](https://github.com/PDFMathTranslate/PDFMathTranslate-next) 与 BabelDOC：全文解析与排版。
