@@ -40,18 +40,11 @@
 
 首次准备模型、词典和 PDF 资源需要网络，完成后本地模型支持离线翻译。已有 PDF Translate 时先停用它，避免阅读器交互冲突。
 
-## 下载与平台
+## 兼容性与更新
 
-| 平台 | 安装包 | 状态 |
-| --- | --- | --- |
-| Apple 芯片 Mac | macOS arm64 完整 ZIP | 已本机验证；尚未 Apple 开发者签名、公证 |
-| Windows 10 / 11 Intel / AMD | Windows x64 完整 ZIP | CPU 推理；新版桌面流程待实机复验 |
-| Zotero 7–10 | XPI 插件，需配套助手 | 7.0 与 10.0.9 有独立资料库验证记录 |
-| 对应源码 | 每版 Release 的 source ZIP | 插件与助手按 AGPL-3.0-or-later 分发 |
-
-所有下载集中在 [Releases](https://github.com/valeryzhu/just-translate-releases/releases)。当前没有 Intel Mac、Windows ARM 或 Linux 的完整安装包。
-
-**升级：** Zotero 可自动更新插件，更新源校验 SHA-256。配套助手通过完整安装包升级；仅安装 XPI 不会升级助手。模型、论文与注释保留。具体版本要求见对应 Release 说明。
+- Zotero 7–10。已在 Zotero 7.0 和 10.0.9 的独立资料库验证插件安装。
+- 本地助手支持 Apple 芯片 Mac、Windows 10 / 11 Intel 或 AMD 64 位。Mac 助手尚未完成签名公证，Windows 新版桌面流程待实机复验。
+- Zotero 可自动更新 XPI。配套助手单独升级，兼容要求见对应版本说明。
 
 ## 本地模型与已有 Agent
 
