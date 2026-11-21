@@ -90,7 +90,7 @@ Agent 连接使用对应账号实际可用的权限与额度。ChatGPT / Codex �
 
 ### 如何反馈问题？
 
-在 [公开仓库 Issues](https://github.com/valeryzhu/just-translate-releases/issues) 说明系统、Zotero 版本、插件与助手版本、复现步骤和错误提示。插件「设置 → 交流与反馈」提供 QQ 群与「小竹读研在养鱼」公众号二维码。截图前遮住个人信息。
+在 [公开仓库 Issues](https://github.com/valeryzhu/just-translate-releases/issues) 说明系统、Zotero 版本、插件与助手版本、复现步骤和错误提示。插件「设置 → 交流与反馈」提供 QQ 群与「小竹读研在养鱼」公众号二维码。
 
 ## 来源与许可
 
