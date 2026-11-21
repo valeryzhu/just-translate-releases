@@ -8,6 +8,10 @@
 
 **首次安装 · 1.0.3 完整包**　[Mac · Apple 芯片](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.3/Just-Translate-Installer-macOS-arm64-1.0.3.zip)　[Windows · Intel / AMD 64 位](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.3/Just-Translate-Windows-x64-1.0.3.zip)
 
+**只安装或更新 Zotero 插件**　[下载 1.0.3 XPI](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.3/Just-Translate-1.0.3.xpi)
+
+在 Zotero 打开「工具 → 插件」，把 `.xpi` 拖进插件窗口，按提示重启。首次使用简译的本地模型或全文 PDF 翻译，请按系统下载上方完整包来安装配套助手。已有兼容助手的用户可直接安装 XPI。
+
 [查看最新版本与升级说明](https://github.com/valeryzhu/just-translate-releases/releases/latest) · [功能与使用指南](#功能) · [常见问题](#常见问题) · [反馈问题](https://github.com/valeryzhu/just-translate-releases/issues)
 
 </div>
