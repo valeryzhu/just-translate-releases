@@ -6,7 +6,7 @@
 
 在 Zotero 中划词即译，保存译文注释，翻译整篇论文。
 
-**安装简译**　[下载 1.0.7 XPI](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.7/Just-Translate-1.0.7.xpi)
+**安装简译**　[下载 1.0.8 XPI](https://github.com/valeryzhu/just-translate-releases/releases/download/v1.0.8/Just-Translate-1.0.8.xpi)
 
 在 Zotero 打开「工具 → 插件」，把 `.xpi` 拖进插件窗口并确认安装。
 
